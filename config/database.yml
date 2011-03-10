@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: project2_development
+  pool: 5
+  username: des	
+  password:	P@ssw0rd
+
+
