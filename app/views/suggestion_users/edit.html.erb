@@ -1,0 +1,7 @@
+<!-- app/views/suggestion_users/edit.html.erb -->
+<%= form_for @suggestionuser , :url => {:action => "update" } do |f| %>
+  <%= f.label "Change suggestion to: "%>
+  <%= f.text_field :body %>
+  <%= f.hidden_field :sid %>
+  <%= f.submit "Sumit changes" %>
+<% end %>

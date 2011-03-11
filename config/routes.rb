@@ -1,4 +1,30 @@
 Project2::Application.routes.draw do
+  get "pages/login"
+  match "pages/login", :via => [:get,:post]
+  match "pages/continue" => "pages#continue"
+
+  get "pages/logout"
+  root :to => "pages#login"
+
+  get "submit/index"
+
+  get "submit/new"
+
+  get "submit/edit"
+
+  get "suggestion_users/index"
+  match "suggestion_users/new" => "suggestion_users#new"
+  match "suggestion_users/create" => "suggestion_users#create"
+  match "suggestion_users/chooseSuggestion" => "suggestion_users#chooseSuggestion"
+  match "suggestion_users/edit" => "suggestion_users#edit"
+  match "suggestion_users/update" => "suggestion_users#update"
+get "users/new"
+  match "users/create" => "users#create"
+  get "users/edit"
+
+  get "users/index"
+ 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

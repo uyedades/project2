@@ -33,28 +33,22 @@ $func$
 language 'plpgsql';
 -- create function for inserting into Users and Suggestion
 create or replace function insertUserSuggestion(_uid integer,  _body text)
-returns boolean as
+  returns boolean as
 $func$
-declare
---sql1 text;
-sid integer;
-begin
+  declare
+   sql1 text;
+   sid integer;
+ begin
 -- above is done
---sql1 := 'coalesce((select id from authors where email = '
---|| quote_literal(_email) || '),insertAuthor('
---|| quote_literal(_fname) || ',' || quote_literal(_lname) ||
---',' || quote_literal(_email) || '))';
-sid := execute 'insertSuggestion(' || quote_literal (_body) || ')' ;
---sql2 := 'coalesce((select id from books where isbn = '
---|| quote_literal(_isbn) || '),insertBook(' ||
---quote_literal(_title) || ',' || quote_literal(_isbn) || '))';
-execute 'insert into sugg_user (s_id, user_id) values ('
-|| quote_ident(sid) || ',' || quote_ident(_uid) || ')';
-return 't';
-end;
+  sql1 := 'select insertSuggestion(' || quote_literal (_body) || ')' ;
+  execute sql1;
+  sid := currval('suggestion_id_seq');
+  execute 'insert into sugg_user (s_id, user_id) values ('
+  || sid || ',' || _uid || ')';
+  return 't';
+ end;
 $func$
 language 'plpgsql';
 -- create rule
---create or replace rule user_suggestion as on insert to all_view
---do instead select insertUserSuggestion(new._uid, new.last_name,
---new.email,new.title,new.isbn);
+create or replace rule user_suggestion as on insert to all_view
+  do instead select insertUserSuggestion(new.userid, new.body);

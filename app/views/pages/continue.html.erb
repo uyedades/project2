@@ -1,0 +1,9 @@
+<!-- app/views/pages/continue.html.erb -->
+<h2> You are logged in </h2>
+<% if cookies.signed[:user_id] == 1 %>
+  <%= link_to "Continue", :controller => "suggestion_users", :action => "index" %>
+<% else %> 
+  <%= link_to "Main", :controller => "suggestion_users", :action => "index" %>
+<% end %>
+
+

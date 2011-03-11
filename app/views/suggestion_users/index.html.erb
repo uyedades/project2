@@ -1,0 +1,20 @@
+<h1>SuggestionUsers#index</h1>
+<p>Find me in app/views/suggestion_users/index.html.erb</p>
+
+<!-- app/views/suggestion_users/index.html.erb -->
+<table border="1">
+  <% @suggestionuser.each do |ab| %>
+    <tr>
+      <td> <%= ab.name %> </td>
+      <td> <%= ab.div %> </td>
+      <td> <%= ab.dept %> </td>
+      <td> <%= ab.body %> </td>
+      <td> <%= ab.created_at %> </td>
+      <td> <%= ab.updated_at %> </td>
+    </tr>
+  <% end %>
+</table>
+<% if cookies.signed[:authenticated] %>
+  <%= link_to "Add new suggestion", :controller => "suggestion_users", :action => "new" %>      
+  <br><%= link_to "Edit suggestion", :controller => "suggestion_users", :action => "chooseSuggestion" %>
+<% end %>

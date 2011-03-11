@@ -1,0 +1,7 @@
+<!-- app/views/suggestion_users/new.html.erb -->
+<h2> New Suggestion </h2>
+<%= form_for :suggestion_users, :url => { :action => "create" } do |f| %>
+  <%= f.label "Suggestion: " %>
+  <%= f.text_field :body %> <br />
+  <%= f.submit "Submit" %>
+<% end %>
